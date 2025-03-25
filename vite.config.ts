@@ -1,17 +1,15 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import path from "path";
-import tsconfig from "./tsconfig.json";
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
+import tsconfig from './tsconfig.json';
 
-const SRC_PATH = path.resolve(__dirname, "src");
+const SRC_PATH = path.resolve(__dirname, 'src');
 
-const parseTsConfigPaths = (
-  paths: Record<string, string[]>,
-): Record<string, string> => {
+const parseTsConfigPaths = (paths: Record<string, string[]>): Record<string, string> => {
   const webpackConfigAliases: Record<string, string> = {};
 
   Object.entries(paths).forEach(([alias, paths]) => {
-    const aliasPath = paths[0].replace(/[^a-zA-Z]/g, "");
+    const aliasPath = paths[0].replace(/[^a-zA-Z]/g, '');
 
     webpackConfigAliases[alias] = path.join(SRC_PATH, aliasPath);
   });
@@ -27,7 +25,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@import "src/styles/variables.scss";`,
+        additionalData: `@use "styles/variables.scss" as *;`,
       },
     },
   },
