@@ -83,6 +83,7 @@ const TheHeader = () => {
         </div>
         <div className={styles.actions}>
           <Link to="/">
+            <p className="visuallyHidden">Список сохраненных рецептов</p>
             <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 fillRule="evenodd"
@@ -96,6 +97,7 @@ const TheHeader = () => {
             </svg>
           </Link>
           <Link to="/">
+            <p className="visuallyHidden">Профиль</p>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g clip-path="url(#clip0_38_1453)">
                 <path

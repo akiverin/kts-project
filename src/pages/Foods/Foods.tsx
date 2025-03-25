@@ -1,8 +1,13 @@
 import React from 'react';
 import './Foods.module.scss';
+import Hero from './Hero';
 
 const Foods = () => {
-  return <></>;
+  return (
+    <>
+      <Hero />
+    </>
+  );
 };
 
 export default Foods;
