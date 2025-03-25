@@ -1,0 +1,39 @@
+.content {
+  padding-top: 36px;
+  background-color: #ffc0763b;
+}
+
+.wrapper {
+  padding: 0 100px;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: $space-l;
+  width: 100%;
+  margin-top: 48px;
+  align-items: end;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 19px;
+  width: 100%;
+}
+
+.dropdown {
+  max-width: 300px;
+}
+
+.foods {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
