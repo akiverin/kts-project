@@ -1,7 +1,7 @@
-import React from "react";
-import "./Card.scss";
-import classNames from "classnames";
-import Text from "../Text";
+import React from 'react';
+import styles from './Card.module.scss';
+import classNames from 'classnames';
+import Text from '../Text';
 
 export type CardProps = {
   /** Дополнительный classname */
@@ -33,15 +33,12 @@ const Card: React.FC<CardProps> = ({
   onClick,
 }: CardProps) => {
   return (
-    <div
-      onClick={onClick}
-      className={classNames("card", className && className)}
-    >
-      <div className="card__header">
-        <img src={image} alt="image card" className="card__image" />
+    <div onClick={onClick} className={classNames(styles.card, className && className)}>
+      <div className={styles.header}>
+        <img src={image} alt="image card" className={styles.image} />
       </div>
-      <div className="card__body">
-        <div className="card__info">
+      <div className={styles.body}>
+        <div className={styles.info}>
           {captionSlot && (
             <Text color="secondary" weight="medium" view="p-14">
               {captionSlot}
@@ -55,9 +52,9 @@ const Card: React.FC<CardProps> = ({
           </Text>
         </div>
         {(contentSlot || actionSlot) && (
-          <div className="card__footer">
+          <div className={styles.footer}>
             {contentSlot && (
-              <Text color="primary" weight="bold" view="p-18">
+              <Text color="accent" weight="bold" view="p-18">
                 {contentSlot}
               </Text>
             )}

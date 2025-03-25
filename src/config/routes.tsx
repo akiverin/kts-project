@@ -8,6 +8,10 @@ export const routesConfig: RouteObject[] = [
     element: <App />,
     children: [
       {
+        path: '/',
+        element: <Foods />,
+      },
+      {
         path: '/foods',
         element: <Foods />,
       },

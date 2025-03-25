@@ -10,7 +10,7 @@ const TheHeader = () => {
         <div className={styles.map}>
           <Link className={styles.linkLogo} to="/">
             <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g clip-path="url(#clip0_38_1439)">
+              <g clipPath="url(#clip0_38_1439)">
                 <path
                   d="M17.8586 0.50616C27.521 0.50616 35.3521 8.33832 35.3521 18C35.3521 27.6628 27.521 35.4938 17.8586 35.4938C8.19691 35.4938 0.364746 27.6628 0.364746 18C0.364746 8.33832 8.19691 0.50616 17.8586 0.50616Z"
                   fill="white"
@@ -37,8 +37,8 @@ const TheHeader = () => {
                   y2="33.1986"
                   gradientUnits="userSpaceOnUse"
                 >
-                  <stop stop-color="#B5460F" />
-                  <stop offset="1" stop-color="#B5460F" />
+                  <stop stopColor="#B5460F" />
+                  <stop offset="1" stopColor="#B5460F" />
                 </linearGradient>
                 <clipPath id="clip0_38_1439">
                   <rect width="36" height="36" fill="white" />
@@ -99,7 +99,7 @@ const TheHeader = () => {
           <Link to="/">
             <p className="visuallyHidden">Профиль</p>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g clip-path="url(#clip0_38_1453)">
+              <g clipPath="url(#clip0_38_1453)">
                 <path
                   fillRule="evenodd"
                   clipRule="evenodd"
