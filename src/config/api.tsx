@@ -98,3 +98,27 @@ export const getRecipe = async (documentId: string): Promise<FoodDetails> => {
     throw new Error('Failed to fetch recipe');
   }
 };
+
+export const getPaginatedRecipes = async (
+  page: number,
+  pageSize: number,
+): Promise<{ data: Recipe[]; pagination: Pagination }> => {
+  try {
+    const query = qs.stringify(
+      {
+        populate: ['images'],
+        pagination: { page, pageSize },
+      },
+      { encodeValuesOnly: true },
+    );
+
+    const response = await api.get<ResponseData>(`?${query}`);
+    return {
+      data: response.data.data,
+      pagination: response.data.meta.pagination,
+    };
+  } catch (error) {
+    console.error('Error fetching recipes:', error);
+    throw new Error('Failed to fetch recipes');
+  }
+};

@@ -1,13 +1,13 @@
 import * as React from 'react';
 import Icon, { IconProps } from '../Icon';
 
-const ArrowRight: React.FC<IconProps> = (props) => {
+const ArrowLeft: React.FC<IconProps> = (props) => {
   return (
     <Icon {...props}>
       <path
-        d="M8.91016 19.9201L15.4302 13.4001C16.2002 12.6301 16.2002 11.3701 15.4302 10.6001L8.91016 4.08008"
+        d="M15.0898 19.9201L8.56984 13.4001C7.79984 12.6301 7.79984 11.3701 8.56984 10.6001L15.0898 4.08008"
         stroke="currentColor"
-        strokeWidth="2"
+        strokeWidth="1.125"
         strokeMiterlimit="10"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -16,4 +16,4 @@ const ArrowRight: React.FC<IconProps> = (props) => {
   );
 };
 
-export default ArrowRight;
+export default ArrowLeft;

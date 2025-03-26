@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './TheFood.module.scss';
 import { Link, useParams } from 'react-router';
-import ArrowRight from 'components/icons/ArrowRight';
+import ArrowLeft from 'components/icons/ArrowLeft';
 import Text from 'components/Text';
 import { getRecipe } from 'config/api';
 import pattern from 'assets/patterg.svg';
@@ -125,7 +125,7 @@ const TheFood: React.FC = () => {
       <>
         <section className={styles.controls}>
           <Link to="/">
-            <ArrowRight color="accent" height={32} width={32} />
+            <ArrowLeft color="accent" height={32} width={32} />
           </Link>
           <Text view="title" weight="bold">
             {food.name}

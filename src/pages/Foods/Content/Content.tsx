@@ -5,32 +5,42 @@ import Input from 'components/Input';
 import Button from 'components/Button';
 import MultiDropdown from 'components/MultiDropdown';
 import Card from 'components/Card';
-import { getAllRecipes, Recipe } from 'config/api';
+import { Recipe } from 'config/api';
 import timeIcon from 'assets/timeIcon.svg';
 import { Link } from 'react-router';
+import Pagination from 'components/Paganation';
+import { getPaginatedRecipes } from 'config/api';
 
 const Content: React.FC = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [pagination, setPagination] = useState({
+    page: 1,
+    pageSize: 10,
+    pageCount: 1,
+    total: 0,
+  });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchRecipes = async () => {
-      try {
-        setIsLoading(true);
-        const data = await getAllRecipes();
-        setRecipes(data);
-        setError(null);
-        console.log(data);
-      } catch (err) {
-        setError('Failed to load recipes. Please try again later.');
-        console.error(err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  const fetchRecipes = async (page: number) => {
+    try {
+      setIsLoading(true);
+      // const data = await getAllRecipes();
+      const { data, pagination } = await getPaginatedRecipes(page, 9);
+      setRecipes(data);
+      setPagination(pagination);
+      setError(null);
+      console.log(data);
+    } catch (err) {
+      setError('Failed to load recipes. Please try again later.');
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-    fetchRecipes();
+  useEffect(() => {
+    fetchRecipes(1);
   }, []);
 
   const renderContent = () => {
@@ -121,6 +131,7 @@ const Content: React.FC = () => {
         </div>
         {renderContent()}
       </div>
+      <Pagination currentPage={pagination.page} totalPages={pagination.pageCount} onPageChange={fetchRecipes} />
     </section>
   );
 };
