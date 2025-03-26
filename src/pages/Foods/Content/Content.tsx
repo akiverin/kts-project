@@ -7,6 +7,7 @@ import MultiDropdown from 'components/MultiDropdown';
 import Card from 'components/Card';
 import { getAllRecipes, Recipe } from 'config/api';
 import timeIcon from 'assets/timeIcon.svg';
+import { Link } from 'react-router';
 
 const Content: React.FC = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -20,6 +21,7 @@ const Content: React.FC = () => {
         const data = await getAllRecipes();
         setRecipes(data);
         setError(null);
+        console.log(data);
       } catch (err) {
         setError('Failed to load recipes. Please try again later.');
         console.error(err);
@@ -44,24 +46,35 @@ const Content: React.FC = () => {
       return <div className={styles.empty}>No recipes found</div>;
     }
 
-    console.log(recipes);
-
     return (
       <ul className={styles.foods}>
         {recipes.map((recipe: Recipe) => (
           <li key={recipe.documentId} className={styles.food}>
-            <Card
-              image={recipe.images[0]?.url || ''}
-              title={recipe.name}
-              subtitle={recipe.summary}
-              contentSlot={recipe.calories + ' kcal'}
-              actionSlot={<Button>Save</Button>}
-              captionSlot={
-                <div className={styles.time}>
-                  <img src={timeIcon} alt="icon time" /> {recipe.preparationTime + ' minutes'}
-                </div>
-              }
-            />
+            <Link to={`/foods/${recipe.documentId}`}>
+              <Card
+                image={recipe.images[0]?.url || ''}
+                title={recipe.name}
+                subtitle={recipe.summary}
+                contentSlot={recipe.calories + ' kcal'}
+                actionSlot={
+                  <Button
+                    onClick={(event) => {
+                      event.preventDefault();
+                    }}
+                  >
+                    Save
+                  </Button>
+                }
+                captionSlot={
+                  <div className={styles.time}>
+                    <img src={timeIcon} alt="icon time" />
+                    <Text color="secondary" weight="medium" view="p-14">
+                      {recipe.preparationTime + ' minutes'}
+                    </Text>
+                  </div>
+                }
+              />
+            </Link>
           </li>
         ))}
       </ul>

@@ -39,11 +39,7 @@ const Card: React.FC<CardProps> = ({
       </div>
       <div className={styles.body}>
         <div className={styles.info}>
-          {captionSlot && (
-            <Text color="secondary" weight="medium" view="p-14">
-              {captionSlot}
-            </Text>
-          )}
+          {captionSlot && captionSlot}
           <Text maxLines={2} weight="medium" view="p-20">
             {title}
           </Text>

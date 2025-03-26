@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { FoodDetails } from 'pages/TheFood';
 import qs from 'qs';
 
 export const API_URL = 'https://front-school-strapi.ktsdev.ru/api/recipes';
@@ -77,5 +78,23 @@ export const getAllRecipes = async (): Promise<Recipe[]> => {
   } catch (error) {
     console.error('Error fetching all recipes:', error);
     throw new Error('Failed to fetch recipes');
+  }
+};
+
+export const getRecipe = async (documentId: string): Promise<FoodDetails> => {
+  try {
+    const query = qs.stringify(
+      {
+        populate: ['ingradients', 'equipments', 'directions.image', 'images', 'category'],
+      },
+      { encodeValuesOnly: true },
+    );
+
+    const response = await api.get<{ data: FoodDetails }>(`/${documentId}?${query}`);
+    console.log(response.data.data);
+    return response.data.data;
+  } catch (error) {
+    console.error(`Error fetching recipe ${documentId}:`, error);
+    throw new Error('Failed to fetch recipe');
   }
 };

@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 
 const TheHeader = () => {
   return (
-    <header>
+    <header className={styles.header}>
       <div className={styles.wrapper}>
         <div className={styles.map}>
           <Link className={styles.linkLogo} to="/">

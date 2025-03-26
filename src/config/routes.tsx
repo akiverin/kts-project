@@ -1,6 +1,7 @@
 import { RouteObject } from 'react-router';
 import App from '../App';
 import Foods from '../pages/Foods';
+import TheFood from '../pages/TheFood';
 
 export const routesConfig: RouteObject[] = [
   {
@@ -14,6 +15,10 @@ export const routesConfig: RouteObject[] = [
       {
         path: '/foods',
         element: <Foods />,
+      },
+      {
+        path: '/foods/:documentId',
+        element: <TheFood />,
       },
     ],
   },
