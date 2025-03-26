@@ -1,7 +1,7 @@
-import React from "react";
-import "./Button.scss";
-import classNames from "classnames";
-import Loader from "../Loader";
+import React from 'react';
+import styles from './Button.module.scss';
+import classNames from 'classnames';
+import Loader from '../Loader';
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   /** Состояние загрузки */
@@ -10,23 +10,14 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   children: React.ReactNode;
 };
 
-const Button: React.FC<ButtonProps> = ({
-  className,
-  loading = false,
-  children,
-  ...props
-}: ButtonProps) => {
+const Button: React.FC<ButtonProps> = ({ className, loading = false, children, ...props }: ButtonProps) => {
   return (
     <button
-      className={classNames(
-        "button",
-        className && className,
-        loading && "button--loading",
-      )}
+      className={classNames(styles.button, className && className, loading && 'buttonLoading')}
       disabled={loading}
       {...props}
     >
-      {loading && <Loader className="button__loader" size="s" />}
+      {loading && <Loader className={styles.loader} size="s" />}
       {children}
     </button>
   );

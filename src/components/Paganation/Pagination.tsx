@@ -13,7 +13,7 @@ export interface PaginationProps {
 const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPageChange }) => {
   const getPageNumbers = () => {
     const pages = [];
-    const maxVisible = 5;
+    const maxVisible = 4;
     let start = Math.max(1, currentPage - 2);
     let end = Math.min(totalPages, currentPage + 2);
 
@@ -51,7 +51,6 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
       >
         <ArrowLeft height={32} width={32} className={styles.icon} />
       </button>
-
       <div className={styles.pages}>
         {getPageNumbers().map((page) => (
           <button
@@ -65,7 +64,6 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
           </button>
         ))}
       </div>
-
       <button
         className={classNames(styles.arrow, {
           [styles.disabled]: currentPage === totalPages,

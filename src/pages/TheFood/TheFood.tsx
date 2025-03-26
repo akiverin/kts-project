@@ -8,6 +8,7 @@ import pattern from 'assets/patterg.svg';
 import Summary from './Summary';
 import Ingredients from './Ingredients/Ingredients';
 import Directions from './Directions/Directions';
+import Loader from 'components/Loader';
 
 export type FoodDetails = {
   documentId: string;
@@ -39,8 +40,7 @@ const TheFood: React.FC = () => {
   const DETAILS: {
     key: keyof Pick<FoodDetails, 'preparationTime' | 'cookingTime' | 'totalTime' | 'likes' | 'servings' | 'rating'>;
     name: string;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    formatter?: (value: any) => string;
+    formatter?: (value: string) => string;
   }[] = [
     {
       key: 'preparationTime',
@@ -100,9 +100,12 @@ const TheFood: React.FC = () => {
   const renderContent = () => {
     if (isLoading) {
       return (
-        <Text view="title" weight="bold">
-          Загрузка...
-        </Text>
+        <>
+          <Text view="title" weight="bold">
+            Loading...
+          </Text>
+          <Loader />
+        </>
       );
     }
 
@@ -117,7 +120,7 @@ const TheFood: React.FC = () => {
     if (!food) {
       return (
         <Text view="title" weight="bold">
-          Блюдо не найдено
+          Food not found!
         </Text>
       );
     }
@@ -142,7 +145,7 @@ const TheFood: React.FC = () => {
                     <li key={item.key} className={styles.item}>
                       <Text>{item.name}</Text>
                       <Text color="accent" weight="bold">
-                        {item.formatter ? item.formatter(value) : value}
+                        {item.formatter ? item.formatter(value.toString()) : value}
                       </Text>
                     </li>
                   );

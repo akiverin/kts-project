@@ -91,7 +91,6 @@ export const getRecipe = async (documentId: string): Promise<FoodDetails> => {
     );
 
     const response = await api.get<{ data: FoodDetails }>(`/${documentId}?${query}`);
-    console.log(response.data.data);
     return response.data.data;
   } catch (error) {
     console.error(`Error fetching recipe ${documentId}:`, error);

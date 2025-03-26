@@ -1,23 +1,14 @@
-import React, { useEffect, useState } from "react";
-import "./CheckBox.scss";
-import classNames from "classnames";
-import CheckIcon from "../icons/CheckIcon";
+import React, { useEffect, useState } from 'react';
+import styles from './CheckBox.module.scss';
+import classNames from 'classnames';
+import CheckIcon from '../icons/CheckIcon';
 
-export type CheckBoxProps = Omit<
-  React.InputHTMLAttributes<HTMLInputElement>,
-  "onChange"
-> & {
+export type CheckBoxProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> & {
   /** Вызывается при клике на чекбокс */
   onChange: (checked: boolean) => void;
 };
 
-const CheckBox: React.FC<CheckBoxProps> = ({
-  onChange,
-  disabled,
-  checked,
-  className,
-  ...props
-}: CheckBoxProps) => {
+const CheckBox: React.FC<CheckBoxProps> = ({ onChange, disabled, checked, className, ...props }: CheckBoxProps) => {
   const isControlled = checked !== undefined;
   const [internalChecked, setInternalChecked] = useState<boolean>(!!checked);
 
@@ -43,7 +34,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({
         type="checkbox"
         disabled={disabled}
         checked={internalChecked}
-        className="visually-hidden checkbox__input"
+        className={classNames(styles.visuallyHidden, styles.input)}
         onChange={(e) => {
           if (disabled) return;
           const newChecked = e.target.checked;
@@ -56,11 +47,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({
       />
       <button
         type="button"
-        className={classNames(
-          className,
-          "checkbox__button",
-          internalChecked && "checkbox--active",
-        )}
+        className={classNames(className, styles.button, internalChecked && styles.checkboxActive)}
         onClick={handleToggle}
         disabled={disabled}
         aria-checked={internalChecked}

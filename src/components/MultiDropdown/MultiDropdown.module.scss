@@ -1,4 +1,4 @@
-.multi-dropdown__menu {
+.menu {
   background-color: $dropdown-options-bg;
   width: 100%;
   box-shadow: $shadow;
@@ -6,19 +6,19 @@
   border-radius: $border-radius;
 }
 
-.multi-dropdown__option {
+.option {
   padding: $space-s $space-xs;
   cursor: pointer;
 }
 
-.multi-dropdown__option:not(.multi-dropdown__option--selected):hover p {
+.option:not(.optionSelected):hover p {
   color: $text-secondary;
 }
 
-.multi-dropdown__option--selected p {
+.optionSelected p {
   color: $text-accent;
 }
 
-.multi-dropdown__input-field--focus {
+.inputFocus {
   border-color: $input-border-focus;
 }

@@ -5,17 +5,18 @@ import Input from 'components/Input';
 import Button from 'components/Button';
 import MultiDropdown from 'components/MultiDropdown';
 import Card from 'components/Card';
-import { Recipe } from 'config/api';
+import Pagination from 'components/Paganation';
+import Loader from 'components/Loader';
+
+import { Recipe, getPaginatedRecipes } from 'config/api';
 import timeIcon from 'assets/timeIcon.svg';
 import { Link } from 'react-router';
-import Pagination from 'components/Paganation';
-import { getPaginatedRecipes } from 'config/api';
 
 const Content: React.FC = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [pagination, setPagination] = useState({
     page: 1,
-    pageSize: 10,
+    pageSize: 9,
     pageCount: 1,
     total: 0,
   });
@@ -30,9 +31,8 @@ const Content: React.FC = () => {
       setRecipes(data);
       setPagination(pagination);
       setError(null);
-      console.log(data);
     } catch (err) {
-      setError('Failed to load recipes. Please try again later.');
+      setError('Error loading foods');
       console.error(err);
     } finally {
       setIsLoading(false);
@@ -45,15 +45,30 @@ const Content: React.FC = () => {
 
   const renderContent = () => {
     if (isLoading) {
-      return <div className={styles.loading}>Loading...</div>;
+      return (
+        <>
+          <Text view="title" weight="bold">
+            Loading...
+          </Text>
+          <Loader />
+        </>
+      );
     }
 
     if (error) {
-      return <div className={styles.error}>{error}</div>;
+      return (
+        <Text view="title" weight="bold">
+          {error}
+        </Text>
+      );
     }
 
     if (recipes.length === 0) {
-      return <div className={styles.empty}>No recipes found</div>;
+      return (
+        <Text view="title" weight="bold">
+          List of foods not found!
+        </Text>
+      );
     }
 
     return (

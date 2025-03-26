@@ -14,17 +14,17 @@
   cursor: pointer;
 }
 
-.button:not(.button--loading):hover {
+.button:not(.buttonLoading):hover {
   background-color: $button-primary-bg-hover;
   color: $button-primary-text-hover;
 }
 
-.button:not(.button--loading):active {
+.button:not(.buttonLoading):active {
   background-color: $button-primary-bg-active;
   color: $button-primary-text-active;
 }
 
-.button__loader {
+.loader {
   color: $button-primary-text !important;
 }
 
